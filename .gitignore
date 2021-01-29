@@ -1,0 +1,28 @@
+*node_modules*
+*coverage*
+
+
+
+*.zip
+
+.DS_Store
+.env.development.local
+.env.test.local
+.env.production.local
+
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+.history
+
+# Elastic Beanstalk Files
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
+
+.nuxt.vscode/launch.json
+.vscode
+
+# docker
+db/data
