@@ -26,7 +26,10 @@ app.use(express.urlencoded({ extended: true }))
 // Get example
 const router: express.Router = express.Router()
 router.get('/api/murmurs', (req, res) => {
-  res.send(`/api/murmurs endpoint`)
+  res.send({
+    text: 'Whenever you find yourself on the side of the majority, it is time to pause and reflect\n-Mark Twain',
+    like: 3
+  })
 })
 
 //Post example
