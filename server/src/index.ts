@@ -25,8 +25,8 @@ app.use(express.urlencoded({ extended: true }))
 
 // Get example
 const router: express.Router = express.Router()
-router.get('/api/getTest', (req, res) => {
-  res.send(req.query)
+router.get('/api/murmurs', (req, res) => {
+  res.send(`/api/murmurs endpoint`)
 })
 
 //Post example
