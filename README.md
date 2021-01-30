@@ -98,7 +98,7 @@ $ yarn -v
 1. docker-compose up -d
 
 #### Server
-1. cd server && npm run ts-node index.ts
+1. cd server && npm run start
 
 #### Client
 1. cd src && yarn dev
