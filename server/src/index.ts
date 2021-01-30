@@ -36,6 +36,7 @@ router.get('/api/murmurs', (req, res) => {
 router.post('/api/postTest', (req, res) => {
   connection.query('select * from test', function (err, results, fields) {
     if (err) throw err
+    console.log(results)
     res.send(results)
   });
 })
