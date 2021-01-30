@@ -1,7 +1,12 @@
 <template>
   <div>
-    <h1>Display the data obtained from API here</h1>
-    {{ data }}
+    <h1>MURMURS</h1>
+    <ul id="example-1">
+      <li v-for="murmur in murmurs" :key="murmur.id">
+        {{ murmur.text }}
+        {{ murmur.like }}
+      </li>
+    </ul>
   </div>
 </template>
 
@@ -11,7 +16,7 @@ export default {
     const res = await $axios.$get('http://localhost:3001/api/murmurs')
     console.log(res)
     return {
-      data: res,
+      murmurs: res,
     }
   },
   data() {
