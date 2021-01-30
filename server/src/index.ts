@@ -27,18 +27,11 @@ app.use(express.urlencoded({extended: true}))
 // Get example
 const router: express.Router = express.Router()
 router.get('/api/murmurs', (req, res) => {
-    res.send([
-        {
-            id: '#1',
-            text: 'Whenever you find yourself on the side of the majority, it is time to pause and reflect\n-Mark Twain',
-            like: 3
-        },
-        {
-            id: '#2',
-            text: 'It is better to travel well than to arrive \n-buddha.',
-            like: 5
-        }
-    ])
+    connection.query('select * from murmurs', function (err, murmurs, fields) {
+        if (err) throw err
+        console.log(murmurs)
+        res.send(murmurs)
+    });
 })
 
 //Post example
