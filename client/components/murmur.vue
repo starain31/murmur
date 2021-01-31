@@ -4,7 +4,7 @@
     <br/>
     -- <b>{{ author }}</b>
     <br/>
-    likes: {{ like }}
+    {{ like }} likes
   </div>
 </template>
 
