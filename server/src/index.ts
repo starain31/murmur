@@ -9,7 +9,7 @@ const connection = mysql.createConnection({
     port: 3307,
     user: 'docker',
     password: 'docker',
-    database: 'test'
+    database: 'main'
 });
 
 connection.connect();
@@ -27,7 +27,7 @@ app.use(express.urlencoded({extended: true}))
 // Get example
 const router: express.Router = express.Router()
 router.get('/api/murmurs', (req, res) => {
-    connection.query('select * from murmurs', function (err, murmurs, fields) {
+    connection.query(`select * from murmurs`, function (err, murmurs, fields) {
         if (err) throw err
         console.log(murmurs)
         res.send(murmurs)
