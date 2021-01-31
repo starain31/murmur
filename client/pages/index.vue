@@ -3,7 +3,7 @@
     <h1>Time Line</h1>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
-        <murmur :text="murmur.text" :like="murmur.like"/>
+        <murmur :text="murmur.text" :like="murmur.like" :author="murmur.author"/>
       </li>
     </ul>
   </div>

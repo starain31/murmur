@@ -1,14 +1,21 @@
 <template>
   <div>
     {{ text }}
-    {{ like }}
+    <br/>
+    -- <b>{{ author }}</b>
+    <br/>
+    likes: {{ like }}
   </div>
 </template>
 
 <script>
 export default {
   name: "murmur",
-  props: ["text", "like"]
+  props: [
+    "text",
+    "like",
+    "author"
+  ]
 }
 </script>
 
