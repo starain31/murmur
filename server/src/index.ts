@@ -29,7 +29,11 @@ app.use(cors())
 // Get example
 const router: express.Router = express.Router()
 router.get('/api/murmurs', (req, res) => {
-    connection.query(`select * from murmurs`, function (err, murmurs, fields) {
+    const page: number = Number(req.query.page as string);
+    console.log(page)
+    const offset = 10*(page-1);
+    console.log(offset)
+    connection.query(`select * from murmurs limit ${offset},10`, function (err, murmurs, fields) {
         if (err) throw err
         console.log(murmurs)
         res.send(murmurs)

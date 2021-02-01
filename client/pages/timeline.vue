@@ -6,6 +6,8 @@
         <murmur :text="murmur.text" :like="murmur.like" :author="murmur.author"/>
       </li>
     </ul>
+    <button v-on:click="previousPage">PREVIOUS PAGE</button>
+    <button v-on:click="nextPage">NEXT PAGE</button>
   </div>
 </template>
 
