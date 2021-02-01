@@ -2,7 +2,7 @@
   <div>
     {{ text }}
     <br/>
-    -- <b>{{ author }}</b>
+    -- <b>{{ user }}</b>
     <br/>
     {{ like }} likes
   </div>
@@ -14,7 +14,7 @@ export default {
   props: [
     "text",
     "like",
-    "author"
+    "user"
   ]
 }
 </script>

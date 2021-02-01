@@ -1,5 +1,5 @@
 import {Router} from "express";
-import {Murmurs} from "../entity/Murmurs";
+import {Murmur} from "../entity/Murmur";
 import {createConnection, getRepository} from "typeorm";
 
 
@@ -11,12 +11,20 @@ router.get('/api/murmurs', async (req, res) => {
     try {
         const page: number = Number(req.query.page as string);
 
-        const murmurs = await getRepository(Murmurs).find({
+        const murmurs: Murmur[] = await getRepository(Murmur).find({
             skip: 10 * (page - 1),
             take: 10,
+            relations: ['user']
         });
-        console.log(murmurs)
-        res.send(murmurs)
+
+        res.send(murmurs.map(murmur => {
+            return {
+                text: murmur.text,
+                like: murmur.like,
+                user: murmur.user.name
+            }
+        }))
+
     } catch (e) {
         console.error(e);
     }
