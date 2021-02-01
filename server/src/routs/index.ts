@@ -1,9 +1,6 @@
 import {Router} from "express";
 import {Murmur} from "../entity/Murmur";
-import {createConnection, getRepository} from "typeorm";
-
-
-const connection = createConnection();
+import {getRepository} from "typeorm";
 
 const router: Router = Router()
 
