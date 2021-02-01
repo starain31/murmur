@@ -12,7 +12,7 @@ export class Murmurs {
     @Column()
     author: string;
 
-    @Column()
+    @Column("int")
     like: number;
 
 }
