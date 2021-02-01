@@ -1,5 +1,6 @@
 import express from 'express'
 import mysql from 'mysql2'
+import cors from 'cors'
 
 const app = express();
 
@@ -23,6 +24,7 @@ connection.connect();
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
+app.use(cors())
 
 // Get example
 const router: express.Router = express.Router()
