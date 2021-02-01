@@ -1,7 +1,7 @@
 import "reflect-metadata";
 import express from 'express'
 import cors from 'cors'
-import router from './routs'
+import router from './routes'
 import {createConnection} from "typeorm";
 
 const app = express();
