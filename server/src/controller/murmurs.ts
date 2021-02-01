@@ -1,11 +1,24 @@
 import {Murmur} from "../entity/Murmur";
-import {getRepository} from "typeorm";
+import {getRepository, In} from "typeorm";
+import {Follows} from "../entity/Follows";
 
 const murmurs = async (req: any, res: any) => {
     try {
         const page: number = Number(req.query.page as string);
 
+        const follows = await getRepository(Follows).find({
+            where: {
+                follower: 1
+            },
+            relations: ['following']
+        });
+
+        console.log(follows.map(follow => follow.following.id));
+
         const murmurs: Murmur[] = await getRepository(Murmur).find({
+            where: {
+                user: In(follows.map(follow => follow.following.id))
+            },
             skip: 10 * (page - 1),
             take: 10,
             relations: ['user']
