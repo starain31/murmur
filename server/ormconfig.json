@@ -1,10 +1,10 @@
 {
    "type": "mysql",
    "host": "localhost",
-   "port": 3306,
-   "username": "test",
-   "password": "test",
-   "database": "test",
+   "port": 3307,
+   "username": "docker",
+   "password": "docker",
+   "database": "main",
    "synchronize": true,
    "logging": false,
    "entities": [
