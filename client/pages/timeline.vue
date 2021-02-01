@@ -13,15 +13,36 @@
 import Murmur from "~/components/murmur.vue";
 export default {
   components: {Murmur},
-  async asyncData({ $axios }): Promise<object> {
-    const res = await $axios.$get('http://localhost:3001/api/murmurs')
-    console.log(res)
-    return {
-      murmurs: res,
+  methods: {
+    nextPage() {
+      this.page += 1;
+      this.fetchPage();
+    },
+
+    previousPage() {
+      if(this.page > 1) {
+        this.page -= 1;
+        this.fetchPage();
+      }
+    },
+
+    fetchPage() {
+      return fetch(`http://localhost:3001/api/murmurs?page=${this.page}`)
+        .then(async (res) => {
+          this.murmurs = await res.json();
+        })
     }
   },
+
   data() {
-    return {}
+    return {
+      murmurs: [],
+      page: 1
+    }
   },
+
+  mounted() {
+    this.fetchPage()
+  }
 }
 </script>
