@@ -15,7 +15,10 @@
     "express": "^4.17.1",
     "helmet": "^4.2.0",
     "moment": "^2.29.1",
-    "mysql2": "^2.2.5"
+    "mysql": "^2.14.1",
+    "mysql2": "^2.2.5",
+    "reflect-metadata": "^0.1.10",
+    "typeorm": "0.2.30"
   },
   "devDependencies": {
     "@types/cors": "^2.8.8",

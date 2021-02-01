@@ -1,56 +1,44 @@
 import express from 'express'
 import mysql from 'mysql2'
 import cors from 'cors'
+import {createConnection} from "typeorm";
+import {Murmurs} from "./entity/Murmurs";
 
 const app = express();
-
-//mysql setting
-const connection = mysql.createConnection({
-    host: 'localhost',
-    port: 3307,
-    user: 'docker',
-    password: 'docker',
-    database: 'main'
-});
-
-connection.connect();
-
-//cors setting
-//app.use((req, res, next) => {
-//  res.header("Access-Control-Allow-Origin", "*")
-//  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept")//
-//  next()
-// })
 
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors())
 
-// Get example
-const router: express.Router = express.Router()
-router.get('/api/murmurs', (req, res) => {
-    const page: number = Number(req.query.page as string);
-    console.log(page)
-    const offset = 10*(page-1);
-    console.log(offset)
-    connection.query(`select * from murmurs limit ${offset},10`, function (err, murmurs, fields) {
-        if (err) throw err
-        console.log(murmurs)
+//TypeORM
+createConnection({
+    type: "mysql",
+    host: "localhost",
+    port: 3307,
+    username: "docker",
+    password: "docker",
+    database: "main",
+    entities: [
+        __dirname + "/entity/*.ts"
+    ],
+    synchronize: true,
+    logging: false
+}).then(async connection => {
+    const router: express.Router = express.Router()
+    router.get('/api/murmurs', async (req, res) => {
+        const page: number = Number(req.query.page as string);
+
+        const murmurs = await connection.getRepository(Murmurs).find({
+            skip: 10 * (page-1),
+            take: 10,
+        });
         res.send(murmurs)
-    });
-})
+    })
 
-//Post example
-router.post('/api/postTest', (req, res) => {
-    connection.query('select * from test', function (err, results, fields) {
-        if (err) throw err
-        console.log(results)
-        res.send(results)
-    });
-})
+    app.use(router)
 
-app.use(router)
+    app.listen(3001, () => {
+        console.log('Example app listening on port 3001!')
+    })
+}).catch(error => console.log(error));
 
-app.listen(3001, () => {
-    console.log('Example app listening on port 3001!')
-})
