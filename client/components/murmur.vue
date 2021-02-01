@@ -4,7 +4,7 @@
     <br/>
     -- <b>{{ user }}</b>
     <br/>
-    {{ like }} likes
+    <em>{{ like }} likes</em>
   </div>
 </template>
 
