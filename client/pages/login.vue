@@ -2,9 +2,9 @@
   <form>
     <h1>Sign in</h1>
     <section>
-      <label for="email">Email</label>
-      <input id="email" name="email" type="text" autocomplete="username" required autofocus
-             v-model="email"
+      <label for="user_id">Email</label>
+      <input id="user_id" name="user_id" type="text" autocomplete="username" required autofocus
+             v-model="user_id"
       >
     </section>
     <button id="log-in" @click="handle_log_in">Log in</button>
@@ -17,7 +17,7 @@ export default {
 
   data: () => {
     return {
-      email: undefined
+      user_id: undefined
     }
   },
 
@@ -36,8 +36,6 @@ export default {
             user_id: this.email
           })
         }).then((response) => {
-        console.log('response')
-        console.log(response);
         return response.json();
       }).then((result) => {
         console.log(result)
