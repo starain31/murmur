@@ -3,13 +3,9 @@
     <h1>Sign in</h1>
     <section>
       <label for="email">Email</label>
-      <input id="email" name="email" type="email" autocomplete="username" required autofocus
+      <input id="email" name="email" type="text" autocomplete="username" required autofocus
              v-model="email"
       >
-    </section>
-    <section>
-      <label for="password">Password</label>
-      <input id="password" name="password" type="password" autocomplete="new-password" required>
     </section>
     <button id="sign-in" @click="handle_sign_in">Sign in</button>
   </form>
