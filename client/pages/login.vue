@@ -7,7 +7,7 @@
              v-model="email"
       >
     </section>
-    <button id="log-in" @click="handle_sign_in">Log in</button>
+    <button id="log-in" @click="handle_log_in">Log in</button>
   </form>
 </template>
 
@@ -22,7 +22,7 @@ export default {
   },
 
   methods: {
-    handle_sign_in(e) {
+    handle_log_in(e) {
       e.preventDefault();
       console.log(e)
       console.log('log in handle')
