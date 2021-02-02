@@ -4,7 +4,7 @@ import {Murmur} from "./Murmur";
 @Entity()
 export class User {
 
-    @PrimaryColumn()
+    @PrimaryColumn({length: 30})
     id: string;
 
     @Column()
