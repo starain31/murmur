@@ -11,7 +11,9 @@ app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 app.use(cors())
 app.use(session({
-    secret: 'monu'
+    secret: 'monu',
+    resave: true,
+    saveUninitialized: true
 }))
 
 app.use(router)
