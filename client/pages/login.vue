@@ -33,7 +33,7 @@ export default {
             'Content-Type': 'application/json'
           },
           body: JSON.stringify({
-            user_id: this.email
+            user_id: this.user_id
           })
         }).then((response) => {
         return response.json();
