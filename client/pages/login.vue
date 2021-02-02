@@ -7,7 +7,7 @@
              v-model="email"
       >
     </section>
-    <button id="sign-in" @click="handle_sign_in">Sign in</button>
+    <button id="log-in" @click="handle_sign_in">Log in</button>
   </form>
 </template>
 
