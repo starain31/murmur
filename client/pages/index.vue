@@ -1,0 +1,58 @@
+<template>
+  <div>
+    <h1>Time Line</h1>
+    <ul id="example-1">
+      <li v-for="murmur in murmurs" :key="murmur.id">
+        <murmur :murmur="murmur"/>
+        <br/>
+      </li>
+    </ul>
+    <button v-on:click="previousPage">PREVIOUS PAGE</button>
+    <button v-on:click="nextPage">NEXT PAGE</button>
+  </div>
+</template>
+
+<script lang="ts">
+import Murmur from "~/components/murmur.vue";
+
+export default {
+  name: 'timeline',
+
+  meta: {
+    requiresAuth: true
+  },
+
+  components: {Murmur},
+  methods: {
+    nextPage() {
+      this.page += 1;
+      this.fetchPage();
+    },
+
+    previousPage() {
+      if (this.page > 1) {
+        this.page -= 1;
+        this.fetchPage();
+      }
+    },
+
+    fetchPage(user_id) {
+      return fetch(`http://localhost:3001/api/murmurs?page=${this.page}&user_id=${user_id}`)
+        .then(async (res) => {
+          this.murmurs = await res.json();
+        })
+    }
+  },
+
+  data() {
+    return {
+      murmurs: [],
+      page: 1
+    }
+  },
+
+  mounted() {
+    this.fetchPage(this.$auth.$storage.getUniversal('user_id'))
+  }
+}
+</script>
