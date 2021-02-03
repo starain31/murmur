@@ -2,7 +2,7 @@
   <form>
     <h1>Sign in</h1>
     <section>
-      <label for="user_id">Email</label>
+      <label for="user_id">USER ID</label>
       <input id="user_id" name="user_id" type="text" autocomplete="username" required autofocus
              v-model="user_id"
       >
@@ -24,14 +24,13 @@ export default {
   methods: {
     handle_log_in(e) {
       e.preventDefault();
-      console.log(e)
-      console.log('log in handle')
       fetch(`http://localhost:3001/api/login`,
         {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
           },
+          credentials: 'include',
           body: JSON.stringify({
             user_id: this.user_id
           })

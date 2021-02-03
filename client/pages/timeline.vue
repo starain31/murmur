@@ -13,7 +13,14 @@
 
 <script lang="ts">
 import Murmur from "~/components/murmur.vue";
+
 export default {
+  name: 'timeline',
+
+  meta: {
+    requiresAuth: true
+  },
+
   components: {Murmur},
   methods: {
     nextPage() {
@@ -22,7 +29,7 @@ export default {
     },
 
     previousPage() {
-      if(this.page > 1) {
+      if (this.page > 1) {
         this.page -= 1;
         this.fetchPage();
       }

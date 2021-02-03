@@ -4,8 +4,7 @@ import {Follows} from "../entity/Follows";
 
 const murmurs = async (req: any, res: any) => {
     try {
-        req.session.my_id = 1;
-
+        console.log(req.session);
         const page: number = Number(req.query.page as string);
 
         const follows = await getRepository(Follows).find({
