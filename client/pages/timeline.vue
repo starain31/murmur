@@ -35,8 +35,8 @@ export default {
       }
     },
 
-    fetchPage() {
-      return fetch(`http://localhost:3001/api/murmurs?page=${this.page}`)
+    fetchPage(user_id) {
+      return fetch(`http://localhost:3001/api/murmurs?page=${this.page}&user_id=${user_id}`)
         .then(async (res) => {
           this.murmurs = await res.json();
         })
@@ -51,8 +51,7 @@ export default {
   },
 
   mounted() {
-    console.log(this.$auth.$storage.getUniversal('user_id'));
-    this.fetchPage()
+    this.fetchPage(this.$auth.$storage.getUniversal('user_id'))
   }
 }
 </script>

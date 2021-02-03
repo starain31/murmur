@@ -4,12 +4,11 @@ import {Follows} from "../entity/Follows";
 
 const murmurs = async (req: any, res: any) => {
     try {
-        console.log(req.session);
         const page: number = Number(req.query.page as string);
 
         const follows = await getRepository(Follows).find({
             where: {
-                follower: req.session.my_id
+                follower: req.query.user_id
             },
             relations: ['following']
         });

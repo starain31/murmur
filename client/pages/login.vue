@@ -25,6 +25,7 @@ export default {
     handle_log_in(e) {
       e.preventDefault();
       this.$auth.$storage.setUniversal('user_id', this.user_id);
+      this.$router.push({name: 'timeline'});
       // fetch(`http://localhost:3001/api/login`,
       //   {
       //     method: 'POST',
