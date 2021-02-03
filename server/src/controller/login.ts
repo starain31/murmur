@@ -8,7 +8,7 @@ const login = async (req: any, res: any) => {
 
     if(user) {
         const token = jwt.sign({id: user?.id}, 'monu', {expiresIn: 86400});
-        res.status(200).send({auth: true, token: token, user: user});
+        return res.status(200).send({auth: true, token: token, user: user});
     }
 
     return res.status(500).send("There was a problem getting user")
