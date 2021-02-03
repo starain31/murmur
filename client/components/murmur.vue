@@ -1,22 +1,50 @@
 <template>
   <div>
-    {{ text }}
+    {{ murmur.text }}
     <br/>
-    -- <b>{{ user }}</b>
+    -- <b>{{ murmur.user.name }}</b>
     <br/>
-    <em>{{ like }} likes</em>
+    <em>{{ murmur.like }} likes</em>
+    <button v-on:click="increase_like">Like</button>
   </div>
 </template>
 
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: "murmur",
+
   props: [
-    "text",
-    "like",
-    "user"
-  ]
-}
+    "murmur",
+  ],
+
+  mounted() {
+    console.log(this.murmur)
+  },
+
+  methods: {
+    increase_like() {
+      fetch(`http://localhost:3001/api/murmur/like`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            murmur_id: this.murmur.id,
+            user_id: this.$auth.$storage.getUniversal('user_id')
+          })
+        }).then((response) => {
+          if(response.status === 201)
+            this.murmur.like += 1;
+      }).catch((e) => {
+        console.log(e);
+      })
+    }
+  }
+})
 </script>
 
 <style scoped>
