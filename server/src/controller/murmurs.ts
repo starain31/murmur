@@ -1,21 +1,37 @@
 import {Murmur} from "../entity/Murmur";
-import {getRepository, In} from "typeorm";
+import {getManager, getRepository, In} from "typeorm";
 import {Follows} from "../entity/Follows";
+import {UserLikes} from "../entity/UserLikes";
 
-const not_liked = ({user_id, murmur_id} : {user_id: string, murmur_id: string}) =>{
-    return false;
+const liked = async ({user_id, murmur_id}: { user_id: string, murmur_id: string }) => {
+    return (await getRepository(UserLikes).findOne({
+        where: {
+            murmur: murmur_id,
+            user: user_id
+        }
+    }) !== undefined);
 }
 
-const add_like = ({user_id, murmur_id} : {user_id: string, murmur_id: string}) => {
-
+const add_like = async ({user_id, murmur_id}: { user_id: string, murmur_id: string }) => {
+    return getRepository(UserLikes).insert({
+        // @ts-ignore
+        user: user_id, murmur: murmur_id
+    })
 }
 
-const like_murmur = (req: any, res: any) => {
-    if (not_liked(req.body)) {
-        add_like(req.body);
-        return res.status(201).send();
+async function increase_like(id: number) {
+    //Todo
+    //implement increase likes.
+    // return getManager('default').increment(Murmur, {id: id}, "like", 1);
+}
+
+const like_murmur = async (req: any, res: any) => {
+    if (await liked(req.body)) {
+        return res.status(400).send();
     }
-    return res.status(400).send();
+    await add_like(req.body);
+    await increase_like(req.body.murmur.id);
+    return res.status(201).send();
 }
 
 const murmurs = async (req: any, res: any) => {
