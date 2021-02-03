@@ -37,7 +37,7 @@ export default {
           })
         }).then(() => {
         this.$auth.$storage.setUniversal('user_id', this.user_id);
-        this.$router.push({name: 'timeline'});
+        this.$router.push({name: 'index'});
       }).catch((e) => {
         console.error(e);
       })
