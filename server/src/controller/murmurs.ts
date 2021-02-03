@@ -2,6 +2,22 @@ import {Murmur} from "../entity/Murmur";
 import {getRepository, In} from "typeorm";
 import {Follows} from "../entity/Follows";
 
+const not_liked = ({user_id, murmur_id} : {user_id: string, murmur_id: string}) =>{
+    return false;
+}
+
+const add_like = ({user_id, murmur_id} : {user_id: string, murmur_id: string}) => {
+
+}
+
+const like_murmur = (req: any, res: any) => {
+    if (not_liked(req.body)) {
+        add_like(req.body);
+        return res.status(201).send();
+    }
+    return res.status(400).send();
+}
+
 const murmurs = async (req: any, res: any) => {
     try {
         const page: number = Number(req.query.page as string);
@@ -24,17 +40,11 @@ const murmurs = async (req: any, res: any) => {
             relations: ['user']
         });
 
-        res.send(murmurs.map(murmur => {
-            return {
-                text: murmur.text,
-                like: murmur.like,
-                user: murmur.user.name
-            }
-        }))
+        res.send(murmurs);
 
     } catch (e) {
         console.error(e);
     }
 }
 
-export {murmurs}
+export {murmurs, like_murmur}
