@@ -51,6 +51,7 @@ export default {
   },
 
   mounted() {
+    console.log(this.$auth.$storage.getUniversal('user_id'));
     this.fetchPage()
   }
 }

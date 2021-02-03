@@ -24,23 +24,25 @@ export default {
   methods: {
     handle_log_in(e) {
       e.preventDefault();
-      fetch(`http://localhost:3001/api/login`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json'
-          },
-          credentials: 'include',
-          body: JSON.stringify({
-            user_id: this.user_id
-          })
-        }).then((response) => {
-        return response.json();
-      }).then((result) => {
-        console.log(result)
-      }).catch((e) => {
-        console.error(e);
-      })
+      this.$auth.$storage.setUniversal('user_id', this.user_id);
+      // fetch(`http://localhost:3001/api/login`,
+      //   {
+      //     method: 'POST',
+      //     headers: {
+      //       'Content-Type': 'application/json'
+      //     },
+      //     credentials: 'include',
+      //     body: JSON.stringify({
+      //       user_id: this.user_id
+      //     })
+      //   }).then((response) => {
+      //   return response.json();
+      // }).then((result) => {
+      //   console.log(result)
+      // }).catch((e) => {
+      //   console.error(e);
+      // })
+
     }
   }
 }
