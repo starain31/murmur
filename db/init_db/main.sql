@@ -45,28 +45,43 @@ create table if not exists murmur
 );
 
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('Whenever you find yourself on the side of the majority, it is time to pause and reflect.', 3, 'mark_twain');
+VALUES ('Whenever you find yourself on the side of the majority, it is time to pause and reflect.', 0, 'mark_twain');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('It is better to travel well than to arrive.', 5, 'gautama_buddha');
+VALUES ('It is better to travel well than to arrive.', 1, 'gautama_buddha');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('Two things are infinite: the universe and human stupidity; and I''m not sure about the universe.', 10, 'albert_einstein');
+VALUES ('Two things are infinite: the universe and human stupidity; and I''m not sure about the universe.', 1, 'albert_einstein');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('Be the change that you wish to see in the world.', 6, 'mahatma_gandhi');
+VALUES ('Be the change that you wish to see in the world.', 0, 'mahatma_gandhi');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('If you tell the truth, you don''t have to remember anything.', 7, 'mark_twain');
+VALUES ('If you tell the truth, you don''t have to remember anything.', 0, 'mark_twain');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('Always forgive your enemies; nothing annoys them so much.', 9, 'oscar_wilde');
+VALUES ('Always forgive your enemies; nothing annoys them so much.', 0, 'oscar_wilde');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('I am glad you are here with me. Here at the end of all things, Sam.', 3, 'jrr_tolkien');
+VALUES ('I am glad you are here with me. Here at the end of all things, Sam.', 0, 'jrr_tolkien');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle', 16, 'albert_einstein');
+VALUES ('There are only two ways to live your life. One is as though nothing is a miracle. The other is as though everything is a miracle', 0, 'albert_einstein');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('We are all in the gutter, but some of us are looking at the stars.', 17, 'oscar_wilde');
+VALUES ('We are all in the gutter, but some of us are looking at the stars.', 0, 'oscar_wilde');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('It is not a lack of love, but a lack of friendship that makes unhappy marriages.', 9, 'thomas_a_edison');
+VALUES ('It is not a lack of love, but a lack of friendship that makes unhappy marriages.', 0, 'thomas_a_edison');
 INSERT INTO main.murmur (`text`, `like`, `userId`)
-VALUES ('To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.', 18, 'ralph_waldo_emerson');
+VALUES ('To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.', 0, 'ralph_waldo_emerson');
 
+create table user_likes
+(
+    id       int auto_increment
+        primary key,
+    userId   varchar(30) null,
+    murmurId int         null,
+    constraint user_likes_pk
+        unique (userId, murmurId),
+    constraint FK_8dbcfb3659d2a1e8641f4b0063d
+        foreign key (userId) references user (id),
+    constraint FK_f3b7bca2180400af48a500bb84d
+        foreign key (murmurId) references murmur (id)
+);
 
+INSERT INTO main.user_likes (id, userId, murmurId) VALUES (1, 'mark_twain', 2);
+INSERT INTO main.user_likes (id, userId, murmurId) VALUES (2, 'mark_twain', 3);
 
 
