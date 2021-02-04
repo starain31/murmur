@@ -9,6 +9,12 @@
         <br><br>
       </li>
     </ul>
+    <form>
+      <label> Murmur
+        <input type="text" v-model="new_murmur">
+      </label>
+      <button v-on:click="submit_murmur">Post</button>
+    </form>
   </div>
 </template>
 
@@ -21,7 +27,8 @@ export default Vue.extend({
   data() {
     return {
       user: undefined,
-      murmurs: []
+      murmurs: [],
+      new_murmur: undefined
     }
   },
 
@@ -56,6 +63,29 @@ export default Vue.extend({
           credentials: 'include',
           body: JSON.stringify({
             murmur_id,
+          })
+        })
+        .then(async (response) => {
+          console.log(await response.text());
+          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
+          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    },
+
+    submit_murmur() {
+      fetch(`http://localhost:3001/api/murmur/add`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            text: this.new_murmur,
+            user: this.$auth.$storage.getUniversal('user_id')
           })
         })
         .then(async (response) => {

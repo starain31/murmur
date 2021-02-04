@@ -72,5 +72,14 @@ const delete_murmur = (req: any, res: any) => {
         });
 }
 
+const add_murmur = (req: any, res: any) => {
+    getRepository(Murmur).insert({
+        text: req.body.text,
+        user: req.body.user
+    }).then(() => {
+        res.send(`Murmur added`)
+    });
+}
 
-export {murmurs, like_murmur, delete_murmur}
+
+export {murmurs, like_murmur, delete_murmur, add_murmur}

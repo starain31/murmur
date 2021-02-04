@@ -13,7 +13,7 @@ export class Murmur {
     @ManyToOne(() => User, user => user.murmurs)
     user: User;
 
-    @Column()
+    @Column('int', {default: 0})
     like: number;
 
 }
