@@ -6,8 +6,7 @@
       <li v-for="murmur in murmurs" :key="murmur.id">
         <murmur :murmur="murmur"/>
         <button v-on:click="delete_murmur(murmur.id)">DELETE</button>
-        <br/>
-        </br>
+        <br><br>
       </li>
     </ul>
   </div>
@@ -27,8 +26,22 @@ export default Vue.extend({
   },
 
   methods: {
-    delete_murmur(e) {
-      console.log(e);
+    delete_murmur(murmur_id) {
+      fetch(`http://localhost:3001/api/murmur/delete`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            murmur_id,
+          })
+        }).then((response) => {
+          this.$mount();
+      }).catch((e) => {
+        console.log(e);
+      })
     }
   },
 
