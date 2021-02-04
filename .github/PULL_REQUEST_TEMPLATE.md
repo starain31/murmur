@@ -2,8 +2,8 @@
 
 
 ## Implemented Features
-- [ ] Timeline
-- [ ] Like murmur
+- [X] Timeline
+- [X] Like murmur
 - [ ] Add new murmur
 - [ ] Murmur details
 - [ ] User details
