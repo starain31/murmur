@@ -1,5 +1,6 @@
 <template>
   <div>
+    <a href="profile"><h1>Profile</h1></a>
     <h1>Time Line</h1>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
@@ -23,6 +24,7 @@ export default {
   },
 
   components: {Murmur},
+
   methods: {
     nextPage() {
       this.page += 1;
