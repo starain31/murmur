@@ -98,10 +98,10 @@ $ yarn -v
 1. docker-compose up -d
 
 #### Server
-1. cd server && npm run start
+1. cd server && npm run ts-node index.ts
 
 #### Client
-1. cd client && yarn dev
+1. cd src && yarn dev
 
 ### How to confirm to success to build environment
 1. You access to http://localhost:3000/
