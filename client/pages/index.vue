@@ -1,10 +1,12 @@
 <template>
   <div>
+    <a href="profile"><h1>Profile</h1></a>
     <h1>Time Line</h1>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
         <murmur :murmur="murmur"/>
-        <br/>
+        <button v-on:click="increase_like(murmur.id)">Like</button>
+        <br><br>
       </li>
     </ul>
     <button v-on:click="previousPage">PREVIOUS PAGE</button>
@@ -23,7 +25,29 @@ export default {
   },
 
   components: {Murmur},
+
   methods: {
+    increase_like(murmur_id) {
+      fetch(`http://localhost:3001/api/murmur/like`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          credentials: 'include',
+          body: JSON.stringify({
+            murmur_id,
+            user_id: this.$auth.$storage.getUniversal('user_id')
+          })
+        })
+        .then((response) => {
+          this.fetchPage(this.$auth.$storage.getUniversal('user_id'))
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    },
+
     nextPage() {
       this.page += 1;
       this.fetchPage();
@@ -52,6 +76,7 @@ export default {
   },
 
   mounted() {
+    console.log(`Mounted called`);
     this.fetchPage(this.$auth.$storage.getUniversal('user_id'))
   }
 }
