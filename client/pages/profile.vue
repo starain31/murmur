@@ -11,7 +11,7 @@
     </ul>
     <form>
       <label> Murmur
-        <input type="text" v-model="new_murmur">
+        <textarea v-model="new_murmur"></textarea>
       </label>
       <button v-on:click="submit_murmur">Post</button>
     </form>
