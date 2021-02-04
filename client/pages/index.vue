@@ -29,7 +29,7 @@ export default Vue.extend({
   components: {Murmur},
 
   methods: {
-    increase_like(murmur_id) {
+    increase_like(murmur_id: number) {
       fetch(`http://localhost:3001/api/murmur/like`,
         {
           method: 'POST',
