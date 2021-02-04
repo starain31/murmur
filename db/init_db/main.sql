@@ -6,7 +6,7 @@ create table if not exists user
     followed_count int not null
 );
 
-INSERT INTO main.user (id, follow_count, followed_count, name) VALUES ('mark_twain', 0, 0, 'Mark Twain');
+INSERT INTO main.user (id, follow_count, followed_count, name) VALUES ('mark_twain', 0, 3, 'Mark Twain');
 INSERT INTO main.user (id, follow_count, followed_count, name) VALUES ('gautama_buddha', 0, 0, 'Gautama Buddha');
 INSERT INTO main.user (id, follow_count, followed_count, name) VALUES ('albert_einstein', 0, 0, 'Albert Einstein');
 INSERT INTO main.user (id, follow_count, followed_count, name) VALUES ('mahatma_gandhi', 0, 0, 'Mahatma Gandhi');
