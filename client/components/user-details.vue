@@ -18,10 +18,6 @@ export default Vue.extend({
     'user'
   ],
 
-  mounted() {
-    console.log(this.user);
-  },
-
 })
 </script>
 
