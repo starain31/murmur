@@ -1,6 +1,7 @@
-import {getRepository, In} from "typeorm";
+import {getRepository} from "typeorm";
 import {User} from "../entity/User";
 import {Murmur} from "../entity/Murmur";
+import {Follows} from "../entity/Follows";
 
 const profile = (req: any, res: any) => {
     getRepository(User)
@@ -11,7 +12,7 @@ const profile = (req: any, res: any) => {
 
 }
 
-const users_all_murmurs =  async (req: any, res: any) => {
+const users_all_murmurs = async (req: any, res: any) => {
     const murmurs: Murmur[] = await getRepository(Murmur).find({
         where: {
             user: req.query.id
@@ -21,4 +22,20 @@ const users_all_murmurs =  async (req: any, res: any) => {
 
     res.send(murmurs);
 }
-export {profile, users_all_murmurs}
+
+const get_all_user = (req: any, res: any) => {
+    getRepository(User).find().then((users) => {
+        res.send(users);
+    })
+}
+
+const follow_user = (req: any, res: any) => {
+    getRepository(Follows).insert({
+        following: req.body.following_id,
+        follower: req.body.follower_id
+    }).then(() => {
+        res.send(`User followed`);
+    })
+}
+
+export {profile, users_all_murmurs, get_all_user, follow_user}
