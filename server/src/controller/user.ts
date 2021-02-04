@@ -1,6 +1,7 @@
 import {getRepository} from "typeorm";
 import {User} from "../entity/User";
 import {Murmur} from "../entity/Murmur";
+import {Follows} from "../entity/Follows";
 
 const profile = (req: any, res: any) => {
     getRepository(User)
@@ -28,4 +29,13 @@ const get_all_user = (req: any, res: any) => {
     })
 }
 
-export {profile, users_all_murmurs, get_all_user}
+const follow_user = (req: any, res: any) => {
+    getRepository(Follows).insert({
+        following: req.body.following_id,
+        follower: req.body.follower_id
+    }).then(() => {
+        res.send(`User followed`);
+    })
+}
+
+export {profile, users_all_murmurs, get_all_user, follow_user}

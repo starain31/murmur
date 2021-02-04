@@ -1,12 +1,14 @@
 <template>
   <div>
     <h1>List of Users</h1>
-    <ul id="example-1">
-      <li v-for="user in users" v-if="user.id!==current_user" :key="user.id" v-on:click="got_user_page(user.id)">
+    <ol id="example-1">
+      <li v-for="user in users" v-if="user.id!==current_user" :key="user.id">
         <user-details :user="user"/>
+        <button v-on:click="follow_user(user.id)">Follow</button>
+        <button v-on:click="got_user_page(user.id)">Details</button>
         <br><br>
       </li>
-    </ul>
+    </ol>
   </div>
 
 </template>
@@ -37,6 +39,20 @@ export default Vue.extend({
 
     got_user_page(id) {
       this.$router.push({name: 'user-details-page', params: {user_id: id}})
+    },
+
+    follow_user(id) {
+      fetch(`http://localhost:3001/api/users/follow`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            follower_id: this.$auth.$storage.getUniversal('user_id'),
+            following_id: id
+          })
+        })
     }
   },
 
