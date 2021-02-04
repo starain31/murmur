@@ -37,6 +37,7 @@ export default Vue.extend({
             user_id: this.$auth.$storage.getUniversal('user_id')
           })
         }).then((response) => {
+        console.log(response.status)
           if(response.status === 201)
             this.murmur.like += 1;
       }).catch((e) => {

@@ -1,5 +1,5 @@
 import {Murmur} from "../entity/Murmur";
-import {getManager, getRepository, In} from "typeorm";
+import {getConnection, getManager, getRepository, In} from "typeorm";
 import {Follows} from "../entity/Follows";
 import {UserLikes} from "../entity/UserLikes";
 
@@ -20,9 +20,11 @@ const add_like = async ({user_id, murmur_id}: { user_id: string, murmur_id: stri
 }
 
 async function increase_like(id: number) {
-    //Todo
-    //implement increase likes.
-    // return getManager('default').increment(Murmur, {id: id}, "like", 1);
+    try {
+        await getRepository(Murmur).increment({id}, "like", 1);
+    } catch (e) {
+        console.error(e);
+    }
 }
 
 const like_murmur = async (req: any, res: any) => {
@@ -30,7 +32,7 @@ const like_murmur = async (req: any, res: any) => {
         return res.status(400).send();
     }
     await add_like(req.body);
-    await increase_like(req.body.murmur.id);
+    await increase_like(req.body.murmur_id);
     return res.status(201).send();
 }
 
