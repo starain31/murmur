@@ -67,6 +67,21 @@ VALUES ('It is not a lack of love, but a lack of friendship that makes unhappy m
 INSERT INTO main.murmur (`text`, `like`, `userId`)
 VALUES ('To be yourself in a world that is constantly trying to make you something else is the greatest accomplishment.', 18, 'ralph_waldo_emerson');
 
+create table user_likes
+(
+    id       int auto_increment
+        primary key,
+    userId   varchar(30) null,
+    murmurId int         null,
+    constraint user_likes_pk
+        unique (userId, murmurId),
+    constraint FK_8dbcfb3659d2a1e8641f4b0063d
+        foreign key (userId) references user (id),
+    constraint FK_f3b7bca2180400af48a500bb84d
+        foreign key (murmurId) references murmur (id)
+);
 
+INSERT INTO main.user_likes (id, userId, murmurId) VALUES (1, 'mark_twain', 2);
+INSERT INTO main.user_likes (id, userId, murmurId) VALUES (2, 'mark_twain', 3);
 
 
