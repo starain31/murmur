@@ -6,7 +6,7 @@ services:
     build: ./docker
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: main
+      MYSQL_DATABASE: test
       MYSQL_USER: docker
       MYSQL_PASSWORD: docker
       TZ: Asia/Tokyo
