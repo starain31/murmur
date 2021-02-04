@@ -1,4 +1,4 @@
-import {getRepository, In} from "typeorm";
+import {getRepository} from "typeorm";
 import {User} from "../entity/User";
 import {Murmur} from "../entity/Murmur";
 
@@ -11,7 +11,7 @@ const profile = (req: any, res: any) => {
 
 }
 
-const users_all_murmurs =  async (req: any, res: any) => {
+const users_all_murmurs = async (req: any, res: any) => {
     const murmurs: Murmur[] = await getRepository(Murmur).find({
         where: {
             user: req.query.id
@@ -21,4 +21,11 @@ const users_all_murmurs =  async (req: any, res: any) => {
 
     res.send(murmurs);
 }
-export {profile, users_all_murmurs}
+
+const get_all_user = (req: any, res: any) => {
+    getRepository(User).find().then((users) => {
+        res.send(users);
+    })
+}
+
+export {profile, users_all_murmurs, get_all_user}
