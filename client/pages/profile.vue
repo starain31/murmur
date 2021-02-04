@@ -26,6 +26,26 @@ export default Vue.extend({
   },
 
   methods: {
+    update_user_details(user_id) {
+      fetch(`http://localhost:3001/api/profile?id=${user_id}`)
+        .then(async (response) => {
+          this.user = await response.json();
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    },
+
+    update_murmurs(user_id) {
+      fetch(`http://localhost:3001/api/user/murmurs?id=${user_id}`)
+        .then(async (response) => {
+          this.murmurs = await response.json();
+        })
+        .catch((e) => {
+          console.log(e);
+        })
+    },
+
     delete_murmur(murmur_id) {
       fetch(`http://localhost:3001/api/murmur/delete`,
         {
@@ -37,30 +57,21 @@ export default Vue.extend({
           body: JSON.stringify({
             murmur_id,
           })
-        }).then((response) => {
-          this.$mount();
-      }).catch((e) => {
-        console.log(e);
-      })
+        })
+        .then(async (response) => {
+          console.log(await response.text());
+          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
+          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+        })
+        .catch((e) => {
+          console.log(e);
+        })
     }
   },
 
   mounted() {
-    fetch(`http://localhost:3001/api/profile?id=${this.$auth.$storage.getUniversal('user_id')}`)
-      .then(async (response) => {
-        this.user = await response.json();
-      })
-      .catch((e) => {
-        console.log(e);
-      })
-
-    fetch(`http://localhost:3001/api/user/murmurs?id=${this.$auth.$storage.getUniversal('user_id')}`)
-      .then(async (response) => {
-        this.murmurs = await response.json();
-      })
-      .catch((e) => {
-        console.log(e);
-      })
+    this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
+    this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
   }
 })
 </script>

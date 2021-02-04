@@ -3,8 +3,6 @@ import {User} from "../entity/User";
 import {Murmur} from "../entity/Murmur";
 
 const profile = (req: any, res: any) => {
-
-    console.log({id: req.query.id});
     getRepository(User)
         .findOne({id: req.query.id})
         .then(user => {
@@ -14,7 +12,6 @@ const profile = (req: any, res: any) => {
 }
 
 const users_all_murmurs =  async (req: any, res: any) => {
-    console.log(req.query.id)
     const murmurs: Murmur[] = await getRepository(Murmur).find({
         where: {
             user: req.query.id

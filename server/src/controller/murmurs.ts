@@ -65,4 +65,12 @@ const murmurs = async (req: any, res: any) => {
     }
 }
 
-export {murmurs, like_murmur}
+const delete_murmur = (req: any, res: any) => {
+    getRepository(Murmur).delete({id: req.body.murmur_id})
+        .then(() => {
+            res.send('Murmur deleted');
+        });
+}
+
+
+export {murmurs, like_murmur, delete_murmur}
