@@ -1,12 +1,12 @@
-#MURMUR
+# MURMUR
 
-###Requirements
+### Requirements
 1. OS: `Linux`
 2. NodeJS: `v12`
 3. NPM: `v6`
 4. YARN: `v22`
 
-###Steps to install this app
+### Steps to install this app
 1. Download the code.
 2. Go to db directory and Build database container.
     1. `$cd db`
@@ -22,13 +22,13 @@
    3. `$yarn build`
    3. `$yarn start`
    
-###Steps to use this app
+### Steps to use this app
 
 1. Go to `http://localhost:3000/login`
    As of now you can not create new user. You have to log-in with existing user.
    log-in with mark_twain
    
-###Pages
+### Pages
 1. log in: `/login`
 2. Timeline: `/`
 3. List of users: `/list-of-user`
