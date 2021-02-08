@@ -13,7 +13,7 @@ router.post('/api/murmur/delete', delete_murmur)
 
 router.post('/api/murmur/add', add_murmur)
 
-router.post('/api/login', login)
+router.post('/api/auth/login', login)
 
 router.get('/api/profile', profile)
 
