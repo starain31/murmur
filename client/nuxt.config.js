@@ -64,9 +64,9 @@ export default {
         baseURL: 'http://localhost:3001',
 
         endpoints: {
-          login: {url: '/api/auth/login', method: 'post'},
+          login: {url: '/api/auth/login', method: 'post', propertyName: 'user'},
           logout: {url: '/api/auth/logout', method: 'post'},
-          user: {url: '/api/auth/user', method: 'get'}
+          user: {url: '/api/auth/user', method: 'get', propertyName: 'user'}
         }
       }
     }

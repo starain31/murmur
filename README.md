@@ -24,12 +24,12 @@
    
 ### Steps to use this app
 
-1. Go to `http://localhost:3000/login`
+1. Go to `http://localhost:3000/auth`
    As of now you can not create new user. You have to log-in with existing user.
    log-in with mark_twain
    
 ### Pages
-1. log in: `/login`
+1. log in: `/auth`
 2. Timeline: `/`
 3. List of users: `/list-of-user`
 4. Profile: `profile`
