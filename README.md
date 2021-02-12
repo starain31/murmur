@@ -25,8 +25,20 @@
 ### Steps to use this app
 
 1. Go to `http://localhost:3000/auth`
-   As of now you can not create new user. You have to log-in with existing user.
-   log-in with mark_twain
+   As of now you can not create new user. You have to log-in with the following existing user.
+   
+   |user_id            |password              |
+   |-------------------|----------------------|
+   |albert_einstein    |Mileva Marić          |
+   |friedrich_nietzsche|Salomé                |
+   |gautama_buddha     |Yasodharā             |
+   |jrr_tolkien        |Edith Tolkien         |
+   |mahatma_gandhi     |Kasturba Gandhi       |
+   |mark_twain         |Olivia Langdon Clemens|
+   |oscar_wilde        |Constance Lloyd       |
+   |ralph_waldo_emerson|Ellen Louisa Tucker   |
+   |thomas_a_edison    |Mary Stilwell         |
+
    
 ### Pages
 1. log in: `/auth`

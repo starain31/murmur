@@ -25,6 +25,25 @@ VALUES ('friedrich_nietzsche', 0, 0, 'Friedrich Nietzsche');
 INSERT INTO main.user (id, follow_count, followed_count, name)
 VALUES ('ralph_waldo_emerson', 0, 0, 'Ralph Waldo Emerson');
 
+create table if not exists auth
+(
+    user_id  varchar(30) not null
+        primary key,
+    password varchar(64) not null,
+    constraint auth___user_id_fk
+        foreign key (user_id) references user (id)
+);
+
+INSERT INTO main.auth (user_id, password) VALUES ('albert_einstein', 'Mileva Marić');
+INSERT INTO main.auth (user_id, password) VALUES ('friedrich_nietzsche', 'Salomé');
+INSERT INTO main.auth (user_id, password) VALUES ('gautama_buddha', 'Yasodharā');
+INSERT INTO main.auth (user_id, password) VALUES ('jrr_tolkien', 'Edith Tolkien');
+INSERT INTO main.auth (user_id, password) VALUES ('mahatma_gandhi', 'Kasturba Gandhi');
+INSERT INTO main.auth (user_id, password) VALUES ('mark_twain', 'Olivia Langdon Clemens');
+INSERT INTO main.auth (user_id, password) VALUES ('oscar_wilde', 'Constance Lloyd');
+INSERT INTO main.auth (user_id, password) VALUES ('ralph_waldo_emerson', 'Ellen Louisa Tucker');
+INSERT INTO main.auth (user_id, password) VALUES ('thomas_a_edison', 'Mary Stilwell');
+
 create table if not exists follows
 (
     id          int auto_increment primary key,
