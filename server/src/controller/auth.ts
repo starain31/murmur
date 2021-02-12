@@ -1,6 +1,6 @@
 import {getRepository} from "typeorm";
 import {User} from "../entity/User";
-import {Request} from 'express';
+import {Request, Response} from 'express';
 import {Auth} from "../entity/auth";
 import jwt from "jsonwebtoken";
 
@@ -44,4 +44,9 @@ const user = async (req: Request, res: any) => {
 
 }
 
-export {login, user}
+const logout = async (req: Request, res: Response) => {
+    console.log('Logout');
+    res.send('logout');
+}
+
+export {login, user, logout}

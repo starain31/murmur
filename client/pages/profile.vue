@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Profile</h1>
     <user-details v-if="user" :user="user"/>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
@@ -23,6 +22,10 @@ import Vue from 'vue'
 
 export default Vue.extend({
   name: "profile",
+
+  meta: {
+    tile: 'profile'
+  },
 
   data() {
     return {
@@ -100,8 +103,8 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-    this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+    this.update_user_details(this.$auth.user.id);
+    this.update_murmurs(this.$auth.user.id);
   }
 })
 </script>
