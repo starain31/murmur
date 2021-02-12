@@ -70,8 +70,8 @@ export default Vue.extend({
         })
         .then(async (response) => {
           console.log(await response.text());
-          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+          this.update_user_details(this.$auth.user.id);
+          this.update_murmurs(this.$auth.user.id);
         })
         .catch((e) => {
           console.log(e);
@@ -88,13 +88,13 @@ export default Vue.extend({
           credentials: 'include',
           body: JSON.stringify({
             text: this.new_murmur,
-            user: this.$auth.$storage.getUniversal('user_id')
+            user: this.$auth.user.id
           })
         })
         .then(async (response) => {
           console.log(await response.text());
-          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+          this.update_user_details(this.$auth.user.id);
+          this.update_murmurs(this.$auth.user.id);
         })
         .catch((e) => {
           console.log(e);
