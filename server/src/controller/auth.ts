@@ -9,13 +9,14 @@ const secret = 'SSSSSSSSSS';
 
 const login = async (req: any, res: any) => {
     try {
+        console.log()
         await getRepository(Auth).findOneOrFail({
             user_id: req.body.user_id, password: req.body.password
         });
 
         return res.status(200).send({
             auth: true,
-            token: jwt.sign({id: req.user_id}, secret, {expiresIn: 86400})
+            token: jwt.sign({id: req.body.user_id}, secret, {expiresIn: 86400})
         });
 
     } catch (e) {
