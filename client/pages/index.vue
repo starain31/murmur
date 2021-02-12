@@ -78,7 +78,9 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.fetchPage(this.$auth.$storage.getUniversal('user_id') as string)
+    if(this.$auth.user) {
+      this.fetchPage(this.$auth.user.id as string)
+    }
   }
 })
 </script>

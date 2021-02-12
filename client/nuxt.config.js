@@ -54,8 +54,8 @@ export default {
       local: {
         token: {
           property: 'token',
-          // required: true,
-          // type: 'Bearer'
+          required: true,
+          type: false
         },
         user: {
           property: 'user',
@@ -64,7 +64,7 @@ export default {
         baseURL: 'http://localhost:3001',
 
         endpoints: {
-          login: {url: '/api/auth/login', method: 'post', propertyName: 'user'},
+          login: {url: '/api/auth/login', method: 'post', propertyName: 'token'},
           logout: {url: '/api/auth/logout', method: 'post'},
           user: {url: '/api/auth/user', method: 'get', propertyName: 'user'}
         }
