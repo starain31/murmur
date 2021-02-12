@@ -17,7 +17,6 @@
 
 <script lang="ts">
 import Murmur from "~/components/murmur.vue";
-import Vue from 'vue'
 
 export default Vue.extend({
   name: 'timeline',
@@ -39,11 +38,11 @@ export default Vue.extend({
           credentials: 'include',
           body: JSON.stringify({
             murmur_id,
-            user_id: this.$auth.$storage.getUniversal('user_id')
+            user_id: this.$auth.user.id
           })
         })
         .then(() => {
-          this.fetchPage(this.$auth.$storage.getUniversal('user_id') as string)
+          this.fetchPage(this.$auth.user.id as string)
         })
         .catch((e) => {
           console.log(e);
@@ -52,13 +51,13 @@ export default Vue.extend({
 
     nextPage() {
       this.page += 1;
-      this.fetchPage(this.$auth.$storage.getUniversal('user_id') as string);
+      this.fetchPage(this.$auth.user.id as string);
     },
 
     previousPage() {
       if (this.page > 1) {
         this.page -= 1;
-        this.fetchPage(this.$auth.$storage.getUniversal('user_id') as string);
+        this.fetchPage(this.$auth.user.id as string);
       }
     },
 
@@ -78,7 +77,7 @@ export default Vue.extend({
   },
 
   mounted() {
-    if(this.$auth.user) {
+    if (this.$auth.user) {
       this.fetchPage(this.$auth.user.id as string)
     }
   }
