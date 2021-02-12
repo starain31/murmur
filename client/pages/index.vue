@@ -1,7 +1,7 @@
 <template>
   <div>
-    <a href="profile"><h3>Profile</h3></a>
-    <a href="list-of-user"><h3>List of user</h3></a>
+    <router-link to="profile"><h3>Profile</h3></router-link>
+    <router-link to="list-of-user"><h3>List of user</h3></router-link>
     <h3>Time Line</h3>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
@@ -17,6 +17,7 @@
 
 <script lang="ts">
 import Murmur from "~/components/murmur.vue";
+import Vue from 'vue';
 
 export default Vue.extend({
   name: 'timeline',
@@ -38,11 +39,11 @@ export default Vue.extend({
           credentials: 'include',
           body: JSON.stringify({
             murmur_id,
-            user_id: this.$auth.user.id
+            user_id: this.$auth.user?.id
           })
         })
         .then(() => {
-          this.fetchPage(this.$auth.user.id as string)
+          this.fetchPage(this.$auth.user?.id as string)
         })
         .catch((e) => {
           console.log(e);
@@ -51,13 +52,13 @@ export default Vue.extend({
 
     nextPage() {
       this.page += 1;
-      this.fetchPage(this.$auth.user.id as string);
+      this.fetchPage(this.$auth.user?.id as string);
     },
 
     previousPage() {
       if (this.page > 1) {
         this.page -= 1;
-        this.fetchPage(this.$auth.user.id as string);
+        this.fetchPage(this.$auth.user?.id as string);
       }
     },
 
@@ -78,7 +79,7 @@ export default Vue.extend({
 
   mounted() {
     if (this.$auth.user) {
-      this.fetchPage(this.$auth.user.id as string)
+      this.fetchPage(this.$auth.user?.id as string)
     }
   }
 })

@@ -14,8 +14,11 @@
 </template>
 
 <script>
+import Vue from 'vue';
+
 export default Vue.extend({
   name: "list-of-user",
+
 
   data() {
     return {
