@@ -27,16 +27,6 @@ export default Vue.extend({
   },
 
   methods: {
-    update_user_details(user_id) {
-      fetch(`http://localhost:3001/api/profile?id=${user_id}`)
-        .then(async (response) => {
-          this.user = await response.json();
-        })
-        .catch((e) => {
-          console.log(e);
-        })
-    },
-
     update_murmurs(user_id) {
       fetch(`http://localhost:3001/api/user/murmurs?id=${user_id}`)
         .then(async (response) => {
@@ -71,7 +61,6 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.update_user_details(this.$route.params.user_id);
     this.update_murmurs(this.$route.params.user_id);
   }
 })

@@ -29,7 +29,7 @@ export default Vue.extend({
 
   data() {
     return {
-      user: undefined,
+      user: this.$auth.user,
       murmurs: [],
       new_murmur: undefined
     }
@@ -40,6 +40,7 @@ export default Vue.extend({
       fetch(`http://localhost:3001/api/profile?id=${user_id}`)
         .then(async (response) => {
           this.user = await response.json();
+          console.log(this.user);
         })
         .catch((e) => {
           console.log(e);
@@ -91,8 +92,7 @@ export default Vue.extend({
             user: this.$auth.user.id
           })
         })
-        .then(async (response) => {
-          console.log(await response.text());
+        .then(async () => {
           this.update_user_details(this.$auth.user.id);
           this.update_murmurs(this.$auth.user.id);
         })

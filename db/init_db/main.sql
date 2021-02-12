@@ -2,27 +2,27 @@ create table if not exists user
 (
     id             varchar(30) primary key,
     name           varchar(255) not null,
-    follow_count   int          not null,
-    followed_count int          not null
+    number_of_followers   int          not null,
+    number_of_followings int          not null
 );
 
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('mark_twain', 0, 3, 'Mark Twain');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('gautama_buddha', 0, 0, 'Gautama Buddha');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('albert_einstein', 0, 0, 'Albert Einstein');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('mahatma_gandhi', 0, 0, 'Mahatma Gandhi');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('oscar_wilde', 0, 0, 'Oscar Wilde');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('jrr_tolkien', 0, 0, 'J.R.R. Tolkien');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('thomas_a_edison', 0, 0, 'Thomas A. Edison');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('friedrich_nietzsche', 0, 0, 'Friedrich Nietzsche');
-INSERT INTO main.user (id, follow_count, followed_count, name)
+INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
 VALUES ('ralph_waldo_emerson', 0, 0, 'Ralph Waldo Emerson');
 
 create table if not exists auth
@@ -34,15 +34,24 @@ create table if not exists auth
         foreign key (user_id) references user (id)
 );
 
-INSERT INTO main.auth (user_id, password) VALUES ('albert_einstein', 'Mileva Marić');
-INSERT INTO main.auth (user_id, password) VALUES ('friedrich_nietzsche', 'Salomé');
-INSERT INTO main.auth (user_id, password) VALUES ('gautama_buddha', 'Yasodharā');
-INSERT INTO main.auth (user_id, password) VALUES ('jrr_tolkien', 'Edith Tolkien');
-INSERT INTO main.auth (user_id, password) VALUES ('mahatma_gandhi', 'Kasturba Gandhi');
-INSERT INTO main.auth (user_id, password) VALUES ('mark_twain', 'Olivia Langdon Clemens');
-INSERT INTO main.auth (user_id, password) VALUES ('oscar_wilde', 'Constance Lloyd');
-INSERT INTO main.auth (user_id, password) VALUES ('ralph_waldo_emerson', 'Ellen Louisa Tucker');
-INSERT INTO main.auth (user_id, password) VALUES ('thomas_a_edison', 'Mary Stilwell');
+INSERT INTO main.auth (user_id, password)
+VALUES ('albert_einstein', 'Mileva Marić');
+INSERT INTO main.auth (user_id, password)
+VALUES ('friedrich_nietzsche', 'Salomé');
+INSERT INTO main.auth (user_id, password)
+VALUES ('gautama_buddha', 'Yasodharā');
+INSERT INTO main.auth (user_id, password)
+VALUES ('jrr_tolkien', 'Edith Tolkien');
+INSERT INTO main.auth (user_id, password)
+VALUES ('mahatma_gandhi', 'Kasturba Gandhi');
+INSERT INTO main.auth (user_id, password)
+VALUES ('mark_twain', 'Olivia Langdon Clemens');
+INSERT INTO main.auth (user_id, password)
+VALUES ('oscar_wilde', 'Constance Lloyd');
+INSERT INTO main.auth (user_id, password)
+VALUES ('ralph_waldo_emerson', 'Ellen Louisa Tucker');
+INSERT INTO main.auth (user_id, password)
+VALUES ('thomas_a_edison', 'Mary Stilwell');
 
 create table if not exists follows
 (
