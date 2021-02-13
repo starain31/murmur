@@ -5,13 +5,19 @@ export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {
     titleTemplate: '%s - goandup-test-for-venturas',
-    title: 'goandup-test-for-venturas',
+    title: 'murmur',
     meta: [
       {charset: 'utf-8'},
       {name: 'viewport', content: 'width=device-width, initial-scale=1'},
       {hid: 'description', name: 'description', content: ''},
     ],
-    link: [{rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'}],
+    link: [
+      {rel: 'icon', type: 'image/x-icon', href: '/favicon.ico'},
+      {
+        rel: 'stylesheet',
+        href: 'https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.min.css'
+      }
+    ],
   },
 
   // Global CSS (https://go.nuxtjs.dev/config-css)

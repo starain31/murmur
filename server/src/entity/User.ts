@@ -11,10 +11,10 @@ export class User {
     name: string;
 
     @Column()
-    follow_count: number;
+    number_of_followers: number;
 
     @Column()
-    followed_count: number;
+    number_of_followings: number;
 
     @OneToMany(() => Murmur, murmur => murmur.user)
     murmurs: Murmur[]

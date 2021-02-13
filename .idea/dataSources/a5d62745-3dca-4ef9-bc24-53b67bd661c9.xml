@@ -839,12 +839,12 @@ followingId</ColNames>
       <DataType>varchar(255)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="254" parent="230" name="follow_count">
+    <column id="254" parent="230" name="number_of_followers">
       <Position>3</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>
     </column>
-    <column id="255" parent="230" name="followed_count">
+    <column id="255" parent="230" name="number_of_followings">
       <Position>4</Position>
       <DataType>int(11)|0s</DataType>
       <NotNull>1</NotNull>

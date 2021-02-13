@@ -1,8 +1,8 @@
 <template>
   <div>
     <header>
-      <button v-on:click="userLogout()">Logout</button>
     </header>
+    <navbar/>
     <nuxt/>
     <footer></footer>
   </div>
