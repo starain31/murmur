@@ -1,7 +1,5 @@
 <template>
   <div>
-    <router-link to="profile"><h3>Profile</h3></router-link>
-    <router-link to="list-of-user"><h3>List of user</h3></router-link>
     <h3>Time Line</h3>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
