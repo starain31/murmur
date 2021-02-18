@@ -2,8 +2,8 @@ create table if not exists user
 (
     id             varchar(30) primary key,
     name           varchar(255) not null,
-    number_of_followers   int          not null,
-    number_of_followings int          not null
+    number_of_followers   int     default 0   not null,
+    number_of_followings int      default 0  not null
 );
 
 INSERT INTO main.user (id, number_of_followers, number_of_followings, name)
