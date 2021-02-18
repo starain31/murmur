@@ -1,6 +1,6 @@
 import {Router} from "express";
 import {murmurs, like_murmur, delete_murmur, add_murmur} from "../controller/murmurs";
-import {login, logout, user} from "../controller/auth";
+import {login, logout, user, register} from "../controller/auth";
 import {profile, users_all_murmurs, get_all_user, follow_user} from "../controller/user";
 
 const router: Router = Router()
@@ -12,6 +12,8 @@ router.post('/api/murmur/like', like_murmur)
 router.post('/api/murmur/delete', delete_murmur)
 
 router.post('/api/murmur/add', add_murmur)
+
+router.post('/api/auth/register', register)
 
 router.post('/api/auth/login', login)
 

@@ -40,8 +40,6 @@ const user = async (req: Request, res: any) => {
         console.error(e);
         return res.status(500).send("There was a problem getting user")
     }
-
-
 }
 
 const logout = async (req: Request, res: Response) => {
@@ -49,4 +47,24 @@ const logout = async (req: Request, res: Response) => {
     res.send('logout');
 }
 
-export {login, user, logout}
+const register = async (req: Request, res: Response) => {
+    try {
+        console.log(req.body);
+        await getRepository(User).insert({
+            name: req.body.name,
+            id: req.body.user_id,
+        });
+
+        await getRepository(Auth).insert({
+            user_id: req.body.user_id,
+            password: req.body.password
+        })
+
+        res.status(201).send({message: 'Registration successful'});
+    } catch (e) {
+        console.log(e);
+        res.status(404).send({message: 'Registration failed'});
+    }
+}
+
+export {login, user, logout, register}
