@@ -1,6 +1,5 @@
 <template>
   <div>
-    <h1>Profile</h1>
     <user-details v-if="user" :user="user"/>
     <ul id="example-1">
       <li v-for="murmur in murmurs" :key="murmur.id">
@@ -19,14 +18,18 @@
 </template>
 
 <script>
-import Vue from 'vue'
+import Vue from 'vue';
 
 export default Vue.extend({
   name: "profile",
 
+  meta: {
+    tile: 'profile'
+  },
+
   data() {
     return {
-      user: undefined,
+      user: this.$auth.user,
       murmurs: [],
       new_murmur: undefined
     }
@@ -37,6 +40,7 @@ export default Vue.extend({
       fetch(`http://localhost:3001/api/profile?id=${user_id}`)
         .then(async (response) => {
           this.user = await response.json();
+          console.log(this.user);
         })
         .catch((e) => {
           console.log(e);
@@ -67,8 +71,8 @@ export default Vue.extend({
         })
         .then(async (response) => {
           console.log(await response.text());
-          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+          this.update_user_details(this.$auth.user.id);
+          this.update_murmurs(this.$auth.user.id);
         })
         .catch((e) => {
           console.log(e);
@@ -85,13 +89,12 @@ export default Vue.extend({
           credentials: 'include',
           body: JSON.stringify({
             text: this.new_murmur,
-            user: this.$auth.$storage.getUniversal('user_id')
+            user: this.$auth.user.id
           })
         })
-        .then(async (response) => {
-          console.log(await response.text());
-          this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-          this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+        .then(async () => {
+          this.update_user_details(this.$auth.user.id);
+          this.update_murmurs(this.$auth.user.id);
         })
         .catch((e) => {
           console.log(e);
@@ -100,8 +103,8 @@ export default Vue.extend({
   },
 
   mounted() {
-    this.update_user_details(this.$auth.$storage.getUniversal('user_id'));
-    this.update_murmurs(this.$auth.$storage.getUniversal('user_id'));
+    this.update_user_details(this.$auth.user.id);
+    this.update_murmurs(this.$auth.user.id);
   }
 })
 </script>

@@ -2,8 +2,8 @@
   <div>
     <ul>
       <li><b>Name: </b> {{ user.name }}</li>
-      <li><b>Number of follower: </b>{{ user.follow_count }}</li>
-      <li><b>Number of following: </b>{{ user.followed_count }}</li>
+      <li><b>Number of follower: </b>{{ user.number_of_followers }}</li>
+      <li><b>Number of following: </b>{{ user.number_of_followings }}</li>
     </ul>
   </div>
 </template>

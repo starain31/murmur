@@ -2,22 +2,28 @@
   <div>
     <form @submit.prevent="userLogin">
       <div>
-        <label>Username</label>
-        <input type="text" v-model="login.user_id" />
+        <label>
+          Username
+          <input type="text" v-model="login.user_id"/>
+        </label>
       </div>
       <div>
-        <label>Password</label>
-        <input type="text" v-model="login.password" />
+        <label>
+          Password
+          <input type="password" v-model="login.password"/>
+        </label>
       </div>
       <div>
-        <button type="submit">Submit</button>
+        <button type="submit">Login</button>
       </div>
     </form>
   </div>
 </template>
 
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   data() {
     return {
       login: {
@@ -29,12 +35,12 @@ export default {
   methods: {
     async userLogin() {
       try {
-        let response = await this.$auth.loginWith('local', { data: this.login })
-        console.log(response)
+        await this.$auth.loginWith('local', {data: this.login});
+        await this.$router.push('/');
       } catch (err) {
         console.log(err)
       }
     }
   }
-}
+})
 </script>
