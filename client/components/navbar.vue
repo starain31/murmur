@@ -38,17 +38,20 @@
 </template>
 
 <script>
-export default {
+import Vue from 'vue';
+
+export default Vue.extend({
   name: "navbar",
 
   methods: {
     async userLogout() {
       console.log('Logging out');
       await this.$auth.logout('local');
+      this.$forceUpdate();
       await this.$router.push('/login');
     }
   }
-}
+})
 </script>
 
 <style scoped>
