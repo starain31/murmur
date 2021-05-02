@@ -1,4 +1,5 @@
 # MURMUR
+## A twitter like project
 
 ### Requirements
 1. OS: `Linux`
